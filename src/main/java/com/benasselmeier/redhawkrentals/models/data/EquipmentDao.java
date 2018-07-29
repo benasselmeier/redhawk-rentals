@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public class EquipmentDao extends CrudRepository<Equipment, Integer>{
+public interface EquipmentDao extends CrudRepository<Equipment, Integer> {
 }
