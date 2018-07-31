@@ -54,15 +54,15 @@ public class EquipmentController {
     public String processAddEquipmentForm(@ModelAttribute
                                           @Valid Equipment newEquipment,
                                           Errors errors,
-                                          //@RequestParam int categoryId,
+                                          @RequestParam int categoryId,
                                           Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Equipment");
             return "rentals/add";
         }
 
-        //Category cat = categoryDao.findOne(categoryId);
-        //newEquipment.setCategory(cat);
+        Category cat = categoryDao.findOne(categoryId);
+        newEquipment.setCategory(cat);
         equipmentDao.save(newEquipment);
         return "redirect:/rentals/add";
     }

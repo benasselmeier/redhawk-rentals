@@ -7,18 +7,34 @@
 
 <p th:unless="${equipment} and ${equipment.size()}">No equipment available :(</p>
 
+<h3 th:text="${equipment.size() + ' Result(s)'}"></h3>
+
 <table class="table">
 
-    <tr>
+    <!--<tr>
         <th>Name</th>
         <th>Category</th>
-        <!--<th>Available?</th> -->
-    </tr>
+        <th>Available?</th>
+    </tr> -->
 
     <tr th:each="item : ${equipment}">
-        <td th:text="${item.name}"></td>
-        <td th:text="${item.category}"></td>
-        <!-- <td th:text="${item.available?}"></td> -->
+        <table th:fragment="single-item">
+            <tr>
+                <th>Name</th>
+                <td th:text="${item.name}"></td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td th:text="${item.category.name}"></td>
+            </tr>
+            <!--<tr>
+                <th>Availability</th>
+                <td th:text="${item.availability}"></td>
+            </tr> -->
+        </table>
+        <!--<td th:text="${item.name}"></td>
+        <td th:text="${item.category.name}"></td>
+        <td th:text="${item.available?}"></td> -->
     </tr>
 
 </table>
