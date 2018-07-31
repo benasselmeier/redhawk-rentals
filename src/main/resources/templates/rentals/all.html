@@ -12,13 +12,13 @@
     <tr>
         <th>Name</th>
         <th>Category</th>
-        <th>Available?</th>
+        <!--<th>Available?</th> -->
     </tr>
 
     <tr th:each="item : ${equipment}">
         <td th:text="${item.name}"></td>
         <td th:text="${item.category}"></td>
-        <td th:text="${item.available?}"></td>
+        <!-- <td th:text="${item.available?}"></td> -->
     </tr>
 
 </table>

@@ -8,6 +8,7 @@ package com.benasselmeier.redhawkrentals.models;
 
 @Entity
 public class Equipment {
+
     @Id
     @GeneratedValue
     private int id;
@@ -16,15 +17,8 @@ public class Equipment {
     @Size(min=3, max=20)
     private String name;
 
-    public Equipment() { }
-
-    public Equipment(String name) {
-        this.name = name;
-    }
-
-    @OneToMany
-    @JoinColumn(name = "item_id")
-    private List<Equipment> equipment = new ArrayList<>();
+    @ManyToOne
+    private Category category;
 
     // Getters and Setters
 
@@ -33,5 +27,13 @@ public class Equipment {
     public void setName (String name) { this.name = name; }
 
     public int getId() { return this.id; }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
 }
