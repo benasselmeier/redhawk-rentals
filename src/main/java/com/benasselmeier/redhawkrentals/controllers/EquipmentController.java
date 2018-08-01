@@ -55,6 +55,7 @@ public class EquipmentController {
                                           @Valid Equipment newEquipment,
                                           Errors errors,
                                           @RequestParam int categoryId,
+                                          @RequestParam int availability,
                                           Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Equipment");
