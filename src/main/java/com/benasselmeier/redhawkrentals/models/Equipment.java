@@ -20,6 +20,9 @@ public class Equipment {
     @ManyToOne
     private Category category;
 
+    @NotNull
+    private int quantity;
+
     // Getters and Setters
 
     public String getName() { return this.name; }
@@ -34,6 +37,14 @@ public class Equipment {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 }

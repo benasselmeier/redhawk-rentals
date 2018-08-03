@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-<p>Redhawk Rentals</p>
-<p>This page will display the user's current rentals and allow them to search for equipment via a search box.</p>
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: main-navigation"></nav>
 </body>
 </html>

@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-<p>Redhawk Rentals</p>
-<p>This is the user's home page.</p>
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: main-navigation"></nav>
 </body>
 </html>

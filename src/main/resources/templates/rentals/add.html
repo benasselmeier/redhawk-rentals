@@ -9,7 +9,13 @@
 
 </head>
 <body class = "container">
+
+<a href="/rentals/all"> Back to all equipment</a>
+
 <h1 th:text="${title}">Default Title</h1>
+
+
+<nav th:replace="fragments :: main-navigation"></nav>
 
 <form method="post" style="max-width:600px;" th:object="${equipment}">
     <div class="form-group">
@@ -18,12 +24,18 @@
         <span th:errors="*{name}" class="error"></span>
     </div>
     <div class="form-group">
-        <label th:for="type">Category</label>
+        <label th:for="type">Select a Category</label>
         <select name="categoryId">
             <option th:each="category : ${categories}"
                     th:text="${category.name}"
                     th:value="${category.id}"></option>
         </select>
+        <a href="/category/add"><i> or, </i>add one.</a>
+    </div>
+    <div class="form-group">
+        <label th:for="quantity">How many?</label>
+        <input class="form-control" th:field="*{quantity}" />
+        <span th:errors="*{name}" class="error"></span>
     </div>
 
     <input type="submit" value="Add Equipment" />
