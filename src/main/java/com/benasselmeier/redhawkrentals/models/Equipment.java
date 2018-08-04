@@ -20,8 +20,13 @@ public class Equipment {
     @ManyToOne
     private Category category;
 
+    @ManyToMany(mappedBy = "rentals")
+    private List<User> users;
+
     @NotNull
     private int quantity;
+
+    public Equipment() { }
 
     // Getters and Setters
 

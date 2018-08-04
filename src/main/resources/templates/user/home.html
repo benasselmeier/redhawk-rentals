@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class = "container">
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: main-navigation"></nav>
+
+<p th:unless="${users} and ${users.size()}">No one's here :(</p>
+
+<ul>
+    <tr th:each="user : ${users}">
+        <li>
+            <a th:href="'/user/view/' + ${user.id}" th:text="${user.name}"></a>
+        </li>
+    </tr>
+</ul>
 </body>
 </html>
