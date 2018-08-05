@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -53,5 +50,19 @@ public class UserController {
         model.addAttribute("title", "Sign Up");
         model.addAttribute(new User());
         return "user/signup";
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String processSignupForm (@ModelAttribute @Valid User newUser,
+                                     Errors errors,
+                                     @RequestParam String name,
+                                     @RequestParam int userId,
+                                     Model model) {
+        if (errors.hasErrors()); {
+            model.addAttribute("title", "Sign Up");
+            return "user/signup";
+        }
+
+
     }
 }

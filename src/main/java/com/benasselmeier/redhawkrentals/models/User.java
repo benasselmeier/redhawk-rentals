@@ -20,10 +20,6 @@ public class User {
     @Size(min = 3, max = 15)
     private String name;
 
-    @NotNull
-    @Size(min = 8)
-    private String password;
-
     @ManyToMany
     private List<Equipment> rentals;
 
@@ -43,5 +39,4 @@ public class User {
 
     public void setName(String name) { this.name = name; }
 
-    public String setPassword() { return password; }
 }

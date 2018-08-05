@@ -18,16 +18,6 @@
         <input class="form-control" th:field="*{name}" />
         <span th:errors="*{name}" class="error"></span>
     </div>
-    <div class="form-group">
-        <label th:for="password">Password:</label>
-        <input type="password" class="form-control" th:field="*{password}" />
-        <span th:errors="*{password}" class="error"></span>
-    </div>
-    <!--<div class="form-group">
-        <label th:for="confirm">Confirm Password:</label>
-        <input type="password" class="form-control" th:field="*{confirm}"/>
-        <span th:errors="*{confirm}" class="error"></span>
-    </div>-->
 
     <input type="submit" value="Sign up!" />
 </form>
