@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">Default Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body class = "container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<form method="post" style="max-width:600px;" th:object="${user}">
+    <div class="form-group">
+        <label th:for="name">Username:</label>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="password">Password:</label>
+        <input type="password" class="form-control" th:field="*{password}" />
+        <span th:errors="*{password}" class="error"></span>
+    </div>
+    <!--<div class="form-group">
+        <label th:for="confirm">Confirm Password:</label>
+        <input type="password" class="form-control" th:field="*{confirm}"/>
+        <span th:errors="*{confirm}" class="error"></span>
+    </div>-->
+
+    <input type="submit" value="Sign up!" />
+</form>
+
+</body>
+</html>

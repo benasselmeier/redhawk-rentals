@@ -6,9 +6,13 @@ import com.benasselmeier.redhawkrentals.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("")
@@ -42,5 +46,12 @@ public class UserController {
         model.addAttribute("userId", user.getId());
 
         return "user/profile";
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String displaySignupForm(Model model) {
+        model.addAttribute("title", "Sign Up");
+        model.addAttribute(new User());
+        return "user/signup";
     }
 }
