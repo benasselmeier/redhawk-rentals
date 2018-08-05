@@ -34,7 +34,7 @@ public class UserController {
         return "user/home";
     }
 
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/view/{userId}", method = RequestMethod.GET)
     public String display_user(Model model, @PathVariable int userId) {
 
         User user = userDao.findOne(userId);
@@ -42,7 +42,7 @@ public class UserController {
         model.addAttribute("rentals", user.getRentals());
         model.addAttribute("userId", user.getId());
 
-        return "user/profile";
+        return "user/view";
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
