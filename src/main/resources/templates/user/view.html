@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container">
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: main-navigation"></nav>
@@ -12,5 +12,6 @@
 
 <p th:unless="${rentals.size()}">You have no current rentals!</p>
 
+<a href="/rentals/rent-item/{userId}">Rent something!</a>
 </body>
 </html>
