@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class = "container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: main-navigation"></nav>
+
+<form method="post" th:object="${form}" action="/rentals/rent-item">
+    <div class="form-group">
+        <label th:for="itemId">Item</label>
+        <select name="itemId">
+            <option th:each="item : *{rentals}"
+                    th:text="${item.name}"
+                    th:value="${item.id}"></option>
+        </select>
+    </div>
+    <input type="hidden" name="userId" th:value="*{user.id}" />
+    <input type="submit" value="Rent it!" />
+</form>
+
+</body>
+</html>
