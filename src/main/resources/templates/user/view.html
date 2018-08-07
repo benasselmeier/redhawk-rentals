@@ -12,6 +12,7 @@
 
 <p th:unless="${rentals.size()}">You have no current rentals!</p>
 
-<a href="/rentals/rent-item/{userId}">Rent something!</a>
+<a th:href="'/rentals/rent-item/user=' + ${userId}">Rent something!</a>
+
 </body>
 </html>

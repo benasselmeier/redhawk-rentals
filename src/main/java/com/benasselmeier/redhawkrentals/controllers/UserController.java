@@ -1,8 +1,10 @@
 package com.benasselmeier.redhawkrentals.controllers;
 
+import com.benasselmeier.redhawkrentals.models.Equipment;
 import com.benasselmeier.redhawkrentals.models.User;
 import com.benasselmeier.redhawkrentals.models.data.EquipmentDao;
 import com.benasselmeier.redhawkrentals.models.data.UserDao;
+import com.benasselmeier.redhawkrentals.models.forms.UserRentalForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,23 +47,53 @@ public class UserController {
         return "user/view";
     }
 
+    @RequestMapping(value = "rentals/rent-item/user={userId}", method = RequestMethod.GET)
+    public String rentItem (Model model, @PathVariable int userId) {
+
+        User user = userDao.findOne(userId);
+
+        UserRentalForm form = new UserRentalForm(equipmentDao.findAll(),user);
+
+        model.addAttribute("title", "Rent as: " + user.getName());
+        model.addAttribute("form", form);
+
+        return "rentals/rent-item";
+    }
+
+    @RequestMapping(value = "rentals/rent-item", method = RequestMethod.POST)
+    public String rentItem (Model model, @ModelAttribute @Valid UserRentalForm form, Errors errors) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("form", form);
+            return "rentals/rent-item";
+        }
+
+        Equipment theEquipment = equipmentDao.findOne(form.getItemId());
+        User theUser = userDao.findOne(form.getUserId());
+        theUser.addItem(theEquipment);
+        userDao.save(theUser);
+        return "redirect:rent-item/user=" + theUser.getId();
+    }
+
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String displaySignupForm(Model model) {
-        model.addAttribute("title", "Sign Up");
+        model.addAttribute("title", "Add User");
         model.addAttribute(new User());
         return "user/signup";
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+   @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String processSignupForm (@ModelAttribute @Valid User newUser,
                                      Errors errors,
-                                     @RequestParam String name,
-                                     @RequestParam int userId,
                                      Model model) {
-        if (errors.hasErrors()); {
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Sign Up");
-            return "user/signup";
+            return "/signup";
         }
+
+        userDao.save(newUser);
+        return "redirect:/home";
+
 
 
     }

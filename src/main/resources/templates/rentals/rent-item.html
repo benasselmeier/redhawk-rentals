@@ -15,7 +15,7 @@
                     th:value="${item.id}"></option>
         </select>
     </div>
-    <input type="hidden" name="userId" th:value="*{user.id}" />
+    <input type="hidden" name="userId" th:value="${userId}" />
     <input type="submit" value="Rent it!" />
 </form>
 
