@@ -39,4 +39,6 @@ public class Category {
     public int getId() {
         return this.id;
     }
+
+    public List <Equipment> getEquipment() { return equipment; }
 }

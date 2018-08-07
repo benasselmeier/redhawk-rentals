@@ -19,6 +19,8 @@ public class CategoryController {
     @Autowired
     private CategoryDao categoryDao;
 
+    //finds all categories for display
+
     @RequestMapping(value = "")
     public String index(Model model) {
 
@@ -28,6 +30,8 @@ public class CategoryController {
         return "category/index";
 
     }
+
+    //renders the form to add a category
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model) {

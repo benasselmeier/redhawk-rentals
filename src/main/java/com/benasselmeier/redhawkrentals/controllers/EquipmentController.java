@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -33,6 +30,8 @@ public class EquipmentController {
     @Autowired
     private CategoryDao categoryDao;
 
+    //displays all equipment available for rental
+
     @RequestMapping("/all")
     public String listAllEquipment(Model model) {
 
@@ -41,6 +40,8 @@ public class EquipmentController {
 
         return "rentals/all";
     }
+
+    //add equipment to the list
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String displayAddEquipmentForm(Model model) {
@@ -66,5 +67,24 @@ public class EquipmentController {
         newEquipment.setCategory(cat);
         equipmentDao.save(newEquipment);
         return "redirect:/rentals/add";
+    }
+
+    //Displays items within the selected category.
+
+    @RequestMapping(value = "categories/all", method = RequestMethod.GET)
+    public String listCategories(Model model) {
+        model.addAttribute("title", "All Categories");
+        model.addAttribute("categories", categoryDao.findAll());
+        return "rentals/all-categories";
+    }
+
+    @RequestMapping(value = "categories/view/{categoryId}", method = RequestMethod.GET)
+    public String displayCategory(Model model, @PathVariable int categoryId) {
+
+        Category cat = categoryDao.findOne(categoryId);
+        model.addAttribute("title", cat.getName());
+        model.addAttribute("equipment", cat.getEquipment());
+        model.addAttribute("categoryId", cat.getId());
+        return "category/view";
     }
 }

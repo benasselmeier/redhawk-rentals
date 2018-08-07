@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="">Default Title</h1>
+
+<nav th:replace="fragments :: main-navigation"></nav>
+
+<ul>
+    <li th:each="item : ${equipment}" th:text="${item.name}"></li>
+</ul>
+
+<p th:unless="${equipment.size()}">There's nothing in this category.</p>
+
+</body>
+</html>

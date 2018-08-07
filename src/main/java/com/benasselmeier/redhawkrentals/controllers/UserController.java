@@ -36,6 +36,8 @@ public class UserController {
         return "user/home";
     }
 
+    //Displays a user's overview page as well as their current rentals.
+
     @RequestMapping(value = "/user/view/{userId}", method = RequestMethod.GET)
     public String display_user(Model model, @PathVariable int userId) {
 
@@ -46,6 +48,8 @@ public class UserController {
 
         return "user/view";
     }
+
+    //Displays the form by which a user can select equipment to rent.
 
     @RequestMapping(value = "rentals/rent-item/user={userId}", method = RequestMethod.GET)
     public String rentItem (Model model, @PathVariable int userId) {
@@ -74,6 +78,8 @@ public class UserController {
         userDao.save(theUser);
         return "redirect:rent-item/user=" + theUser.getId();
     }
+
+    //allows adding of a new user to the application.
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String displaySignupForm(Model model) {
