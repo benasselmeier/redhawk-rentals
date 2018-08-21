@@ -78,13 +78,4 @@ public class EquipmentController {
         return "rentals/all-categories";
     }
 
-    @RequestMapping(value = "categories/view/{categoryId}", method = RequestMethod.GET)
-    public String displayCategory(Model model, @PathVariable int categoryId) {
-
-        Category cat = categoryDao.findOne(categoryId);
-        model.addAttribute("title", cat.getName());
-        model.addAttribute("equipment", cat.getEquipment());
-        model.addAttribute("categoryId", cat.getId());
-        return "category/view";
-    }
 }
