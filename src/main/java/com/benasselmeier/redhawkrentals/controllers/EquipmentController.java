@@ -76,6 +76,11 @@ public class EquipmentController {
         model.addAttribute("title", "All Categories");
         model.addAttribute("categories", categoryDao.findAll());
         return "rentals/all-categories";
+        }
+
+    @RequestMapping(value= "/search/", method = RequestMethod.GET)
+    public String processSearchForm(@ModelAttribute String searchTerm, Errors errors){
+
     }
 
 }
