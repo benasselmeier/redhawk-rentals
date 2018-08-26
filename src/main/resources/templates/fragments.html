@@ -13,12 +13,12 @@
 <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a th:href="@{/}" class="navbar-brand">Redhawk Rentals</a>
+            <a th:href="@{/home}" class="navbar-brand">Redhawk Rentals</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/rentals/all}">Rentals</a></li>
-                <li><a th:href="@{/categories}">Categories</a></li>
+                <li><a th:href="@{/rentals/categories/all}">Categories</a></li>
             </ul>
         </div>
     </div>
