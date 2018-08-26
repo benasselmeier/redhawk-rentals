@@ -78,9 +78,10 @@ public class EquipmentController {
         return "rentals/all-categories";
         }
 
-    @RequestMapping(value= "/search/", method = RequestMethod.GET)
+   /* @RequestMapping(value= "/search/", method = RequestMethod.GET)
     public String processSearchForm(@ModelAttribute String searchTerm, Errors errors){
 
     }
+    */
 
 }

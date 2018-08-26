@@ -10,6 +10,20 @@
 </head>
 <body>
 
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/}" class="navbar-brand">Redhawk Rentals</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/rentals/all}">Rentals</a></li>
+                <li><a th:href="@{/categories}">Categories</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <nav th:fragment="main-navigation">
     <a href="/home">Home</a> |
     <a href="/rentals/all">Rentals</a>
