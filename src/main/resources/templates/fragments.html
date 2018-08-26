@@ -10,19 +10,19 @@
 </head>
 <body>
 
-<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+<nav th:fragment="page-header" class="navbar navbar-inverse navbar-expand-lg navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <a th:href="@{/home}" class="navbar-brand">Redhawk Rentals</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/rentals/all}">Rentals</a></li>
+                <li><a th:href="@{/rentals/all}">Equipment</a></li>
                 <li><a th:href="@{/rentals/categories/all}">Categories</a></li>
             </ul>
         </div>
     </div>
-</div>
+</nav>
 
 <nav th:fragment="main-navigation">
     <a href="/home">Home</a> |

@@ -20,7 +20,7 @@ public class CategoryController {
     @Autowired
     private CategoryDao categoryDao;
 
-    //finds all categories for display
+    //finds all categories to be displayed
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -43,6 +43,8 @@ public class CategoryController {
 
     }
 
+    //processes the form which adds a category
+
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute @Valid Category category, Errors errors) {
 
@@ -57,6 +59,8 @@ public class CategoryController {
         }
 
     }
+
+    //displays an individual category selected from a list by the user.
 
     @RequestMapping(value = "view/{categoryId}")
     public String displayCategory(Model model, @PathVariable int categoryId) {

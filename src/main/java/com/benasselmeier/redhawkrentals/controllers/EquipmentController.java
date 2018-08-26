@@ -41,7 +41,7 @@ public class EquipmentController {
         return "rentals/all";
     }
 
-    //add equipment to the list
+    //add equipment to the catalog
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String displayAddEquipmentForm(Model model) {
@@ -69,7 +69,7 @@ public class EquipmentController {
         return "redirect:/rentals/add";
     }
 
-    //Displays items within the selected category.
+    //Displays items within a selected category.
 
     @RequestMapping(value = "categories/all", method = RequestMethod.GET)
     public String listCategories(Model model) {
@@ -78,9 +78,13 @@ public class EquipmentController {
         return "rentals/all-categories";
         }
 
-   /* @RequestMapping(value= "/search/", method = RequestMethod.GET)
-    public String processSearchForm(@ModelAttribute String searchTerm, Errors errors){
-
+    //Search functionality. Returning later.
+    /*
+        @RequestMapping(value= "/search/", method = RequestMethod.GET)
+    public String processSearchForm(Model model){
+        model.addAttribute("title", "Search");
+        model.addAttribute("categories", categoryDao.findAll());
+        return "rentals/search";
     }
     */
 
