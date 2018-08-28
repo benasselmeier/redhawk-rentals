@@ -6,8 +6,6 @@
 
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: main-navigation"></nav>
-
 <p th:unless="${equipment} and ${equipment.size()}">No equipment available :(</p>
 
 <a href="/rentals/add">Add Equipment</a>

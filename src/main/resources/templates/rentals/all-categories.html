@@ -5,8 +5,6 @@
 <body class = "container" style="padding-top: 50px">
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: main-navigation"></nav>
-
 <p>View by category:</p>
 
 <ul>
@@ -14,6 +12,8 @@
         <a th:text="${category.name}" th:href="'/category/view/' + ${category.id}"></a>
     </li>
 </ul>
+
+<a href="/category/add">Add a New Category</a>
 
 <p th:unless="${categories.size()}">There aren't any categories yet. <a href="category/add">Add one.</a></p>
 

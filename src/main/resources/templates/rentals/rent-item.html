@@ -5,8 +5,6 @@
 <body class = "container" style="padding-top: 50px">
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: main-navigation"></nav>
-
 <form method="post" th:object="${form}" action="/rentals/rent-item">
     <div class="form-group">
         <label th:for="itemId">Item</label>
