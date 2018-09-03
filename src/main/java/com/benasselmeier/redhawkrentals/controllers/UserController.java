@@ -42,7 +42,7 @@ public class UserController {
     public String display_user(Model model, @PathVariable int userId) {
 
         User user = userDao.findOne(userId);
-        model.addAttribute("title", user.getName());
+        model.addAttribute("title", "Welcome to Redhawk Rentals, " + user.getName());
         model.addAttribute("rentals", user.getRentals());
         model.addAttribute("userId", user.getId());
 

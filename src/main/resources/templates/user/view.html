@@ -5,13 +5,26 @@
 <body class = "container" style="padding-top: 50px">
 <h1 th:text="${title}">Default Title</h1>
 
-<ul>
-    <li th:each="item : ${rentals}" th:text="${item.name}"></li>
-</ul>
+<h3><b>Your Rentals:</b></h3>
 
-<p th:unless="${rentals.size()}">You have no current rentals!</p>
+<table class="table">
 
-<p><a th:href="'/rentals/rent-item/user=' + ${userId}">Rent something!</a></p>
+<tr>
+    <th>Item Name</th>
+    <th>Category</th>
+</tr>
+
+<tr th:each="item : ${rentals}">
+    <td th:text="${item.name}"></td>
+    <td th:text="${item.category.name}"></td>
+</tr>
+</table>
+
+<p th:unless="${rentals.size()}">You haven't rented anything yet :(</p>
+
+<p th:unless="${rentals.size()}"><a th:href="'/rentals/rent-item/user=' + ${userId}">Rent something!</a></p>
+
+<p th:if="${rentals.size()}"><a th:href="'/rentals/rent-item/user=' + ${userId}">Rent something else!</a></p>
 
 <p><a th:href="'/rentals/all'">View the catalog.</a></p>
 
