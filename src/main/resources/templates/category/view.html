@@ -5,11 +5,25 @@
 <body class = "container" style="padding-top: 50px">
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: main-navigation"></nav>
 
+<!--
 <ul>
     <li th:each="item : ${equipment}" th:text="${item.name}"></li>
 </ul>
+-->
+
+<table class="table">
+
+    <tr>
+        <th>Item Name</th>
+        <th>Available?</th>
+    </tr>
+
+    <tr th:each="item : ${equipment}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.quantity}"></td>
+    </tr>
+</table>
 
 <p th:unless="${equipment.size()}">There's nothing in this category.</p>
 
