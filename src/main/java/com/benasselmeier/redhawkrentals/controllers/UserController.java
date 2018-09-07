@@ -27,10 +27,10 @@ public class UserController {
     @RequestMapping("/home")
     public String index(Model model) {
 
-        //will temporarily display a list of all users in the database.
+        //displays a list of all users in the database.
         //this will be removed with the implementation of user logins.
 
-        model.addAttribute("title", "All Users");
+        model.addAttribute("title", "Continue as:");
         model.addAttribute("users", userDao.findAll());
 
         return "user/home";
