@@ -1,18 +1,43 @@
-<!--
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: page-header"></nav>
 <body class = "container" style="padding-top: 50px">
-<h1 th:text="">Default Title</h1>
+<h1 th:text="${title}">Default Title</h1>
 
-<form method="post" style="max-width:600px;" th:object="${searchForm}">
-    <h2>Search by:</h2>
 
-    <ul class="form-group">
-        <li th:each category : categories
+<form method="post" style="max-width:600px;" th:object="${searchTerm}" action="/rentals/search/results">
+    <div class="form-group">
+        <label th:for="searchTerm"></label>
+        <input name="searchTerm" class="form-control" type="text"  />
+    </div>
+
+    <input type="submit" value="Search" />
+</form>
+
+<div>
+
+<h2 th:if="${searchResults} and ${searchResults.size()}">Results</h2>
+
+<table th:if="${searchResults} and ${searchResults.size()}" class="table">
+
+    <tr>
+        <th>Item Name</th>
+        <th>Category</th>
+        <th>Available?</th>
+    </tr>
+
+    <tr th:each="item : ${searchResults}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.category.name}"></td>
+        <td th:text="${item.quantity}"></td>
+    </tr>
+
+</table>
+
+</div>
+
 
 
 </body>
 </html>
--->

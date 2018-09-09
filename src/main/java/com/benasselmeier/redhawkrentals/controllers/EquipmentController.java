@@ -4,11 +4,14 @@ import com.benasselmeier.redhawkrentals.models.Category;
 import com.benasselmeier.redhawkrentals.models.Equipment;
 import com.benasselmeier.redhawkrentals.models.data.CategoryDao;
 import com.benasselmeier.redhawkrentals.models.data.EquipmentDao;
+import com.benasselmeier.redhawkrentals.models.forms.SearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import javax.validation.Valid;
 
@@ -70,14 +73,19 @@ public class EquipmentController {
         return "rentals/all-categories";
         }
 
-    //Search functionality. Returning later.
-    /*
-        @RequestMapping(value= "/search/", method = RequestMethod.GET)
-    public String processSearchForm(Model model){
+        @RequestMapping(value= "/search", method = RequestMethod.GET)
+    public String displaySearchForm(Model model){
+
         model.addAttribute("title", "Search");
-        model.addAttribute("categories", categoryDao.findAll());
         return "rentals/search";
     }
-    */
 
+    @RequestMapping(value = "/search/results", method = RequestMethod.POST)
+    public String processSearchForm(Model model, @RequestParam String searchTerm) {
+
+        model.addAttribute("title", "Search");
+        model.addAttribute("searchResults", equipmentDao.findByNameContaining(searchTerm));
+
+        return "rentals/search";
+    }
 }
