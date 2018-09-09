@@ -4,7 +4,6 @@ import com.benasselmeier.redhawkrentals.models.Category;
 import com.benasselmeier.redhawkrentals.models.Equipment;
 import com.benasselmeier.redhawkrentals.models.data.CategoryDao;
 import com.benasselmeier.redhawkrentals.models.data.EquipmentDao;
-import com.benasselmeier.redhawkrentals.models.forms.SearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
