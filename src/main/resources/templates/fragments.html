@@ -14,10 +14,13 @@
 
     <div class="container">
         <div class="navbar-header">
-            <a th:href="@{/home}" class="navbar-brand">Redhawk Rentals</a>
+            <a th:href="@{/}" class="navbar-brand">Redhawk Rentals</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                <!-- Nav button to return to the user's overview page. May require storage of the userId in the session.
+                <li><a th:href="@{/user/view} + ${user.id}">My Rentals</a></li>
+                -->
                 <li><a th:href="@{/rentals/all}">Equipment</a></li>
                 <li><a th:href="@{/rentals/search}">Search</a></li>
                 <li><a th:href="@{/rentals/categories/all}">Categories</a></li>

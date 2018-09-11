@@ -24,7 +24,7 @@ public class UserController {
     private UserDao userDao;
 
     // Request path: /home
-    @RequestMapping("/home")
+    @RequestMapping("")
     public String index(Model model) {
 
         //displays a list of all users in the database.
