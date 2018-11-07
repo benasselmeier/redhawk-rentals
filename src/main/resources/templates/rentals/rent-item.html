@@ -14,6 +14,11 @@
                     th:value="${item.id}"></option>
         </select>
     </div>
+    <div class="form-group">
+        <label th:for="itemQuantity">Quantity</label>
+        <input name="itemQuantity" type="number">
+        </input>
+    </div>
     <input type="hidden" name="userId" th:value="${userId}" />
     <input type="submit" value="Rent it!" />
 </form>

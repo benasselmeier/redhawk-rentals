@@ -32,6 +32,15 @@ public class CategoryController {
 
     }
 
+    //Displays items within a selected category.
+
+    @RequestMapping(value = "view/all", method = RequestMethod.GET)
+    public String listCategories(Model model) {
+        model.addAttribute("title", "All Categories");
+        model.addAttribute("categories", categoryDao.findAll());
+        return "rentals/all-categories";
+    }
+
     //renders the form to add a category
 
     @RequestMapping(value = "add", method = RequestMethod.GET)

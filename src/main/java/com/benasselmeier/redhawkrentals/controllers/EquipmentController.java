@@ -60,14 +60,7 @@ public class EquipmentController {
         return "redirect:/rentals/add";
     }
 
-    //Displays items within a selected category.
-
-    @RequestMapping(value = "categories/all", method = RequestMethod.GET)
-    public String listCategories(Model model) {
-        model.addAttribute("title", "All Categories");
-        model.addAttribute("categories", categoryDao.findAll());
-        return "rentals/all-categories";
-        }
+     //Search functionality
 
         @RequestMapping(value= "/search", method = RequestMethod.GET)
     public String displaySearchForm(Model model){
