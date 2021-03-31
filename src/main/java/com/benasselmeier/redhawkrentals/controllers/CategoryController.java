@@ -1,7 +1,7 @@
 package com.benasselmeier.redhawkrentals.controllers;
 
 import com.benasselmeier.redhawkrentals.models.Category;
-import com.benasselmeier.redhawkrentals.models.data.CategoryDao;
+import com.benasselmeier.redhawkrentals.models.data.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +18,14 @@ import javax.validation.Valid;
 public class CategoryController {
 
     @Autowired
-    private CategoryDao categoryDao;
+    private CategoryRepository categoryRepository;
 
     //finds all categories to be displayed
 
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Categories");
 
         return "category/index";
@@ -37,7 +37,7 @@ public class CategoryController {
     @RequestMapping(value = "view/all", method = RequestMethod.GET)
     public String listCategories(Model model) {
         model.addAttribute("title", "All Categories");
-        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "rentals/all-categories";
     }
 
@@ -63,7 +63,7 @@ public class CategoryController {
             return "category/add";
         }
         else {
-            categoryDao.save(category);
+            categoryRepository.save(category);
             return "redirect:";
         }
 
@@ -74,7 +74,7 @@ public class CategoryController {
     @RequestMapping(value = "view/{categoryId}")
     public String displayCategory(Model model, @PathVariable int categoryId) {
 
-        Category cat = categoryDao.findOne(categoryId);
+        Category cat = categoryRepository.findOne(categoryId);
         model.addAttribute("title", cat.getName());
         model.addAttribute("equipment", cat.getEquipment());
         model.addAttribute("categoryId", cat.getId());

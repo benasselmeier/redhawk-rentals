@@ -2,8 +2,8 @@ package com.benasselmeier.redhawkrentals.controllers;
 
 import com.benasselmeier.redhawkrentals.models.Equipment;
 import com.benasselmeier.redhawkrentals.models.User;
-import com.benasselmeier.redhawkrentals.models.data.EquipmentDao;
-import com.benasselmeier.redhawkrentals.models.data.UserDao;
+import com.benasselmeier.redhawkrentals.models.data.EquipmentRepository;
+import com.benasselmeier.redhawkrentals.models.data.UserRepository;
 import com.benasselmeier.redhawkrentals.models.forms.UserRentalForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,10 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    private EquipmentDao equipmentDao;
+    private EquipmentRepository equipmentRepository;
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     // Request path: /home
     @RequestMapping("")
@@ -31,7 +31,7 @@ public class UserController {
         //this will be removed with the implementation of user logins.
 
         model.addAttribute("title", "Continue as:");
-        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("users", userRepository.findAll());
 
         return "user/home";
     }
@@ -41,7 +41,7 @@ public class UserController {
     @RequestMapping(value = "/user/view/{userId}", method = RequestMethod.GET)
     public String display_user(Model model, @PathVariable int userId) {
 
-        User user = userDao.findOne(userId);
+        User user = userRepository.findOne(userId);
         model.addAttribute("title", "Welcome to Redhawk Rentals, " + user.getName());
         model.addAttribute("rentals", user.getRentals());
         model.addAttribute("userId", user.getId());
@@ -54,9 +54,9 @@ public class UserController {
     @RequestMapping(value = "rentals/rent-item/user={userId}", method = RequestMethod.GET)
     public String rentItem (Model model, @PathVariable int userId) {
 
-        User user = userDao.findOne(userId);
+        User user = userRepository.findOne(userId);
 
-        UserRentalForm form = new UserRentalForm(equipmentDao.findAll(),user);
+        UserRentalForm form = new UserRentalForm(equipmentRepository.findAll(),user);
 
         model.addAttribute("title", "Rent as: " + user.getName());
         model.addAttribute("form", form);
@@ -72,10 +72,10 @@ public class UserController {
             return "rentals/rent-item";
         }
 
-        Equipment theEquipment = equipmentDao.findOne(form.getItemId());
-        User theUser = userDao.findOne(form.getUserId());
+        Equipment theEquipment = equipmentRepository.findOne(form.getItemId());
+        User theUser = userRepository.findOne(form.getUserId());
         theUser.addItem(theEquipment);
-        userDao.save(theUser);
+        userRepository.save(theUser);
         return "redirect:rent-item/user=" + theUser.getId();
     }
 
@@ -97,7 +97,7 @@ public class UserController {
             return "/signup";
         }
 
-        userDao.save(newUser);
+        userRepository.save(newUser);
         return "redirect:/home";
 
 

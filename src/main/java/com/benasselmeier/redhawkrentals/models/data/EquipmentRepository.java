@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface EquipmentDao extends CrudRepository<Equipment, Integer> {
+public interface EquipmentRepository extends CrudRepository<Equipment, Integer> {
 
     List<Equipment> findByNameContaining(String name);
 

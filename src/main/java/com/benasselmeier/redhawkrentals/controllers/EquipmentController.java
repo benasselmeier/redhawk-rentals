@@ -2,8 +2,8 @@ package com.benasselmeier.redhawkrentals.controllers;
 
 import com.benasselmeier.redhawkrentals.models.Category;
 import com.benasselmeier.redhawkrentals.models.Equipment;
-import com.benasselmeier.redhawkrentals.models.data.CategoryDao;
-import com.benasselmeier.redhawkrentals.models.data.EquipmentDao;
+import com.benasselmeier.redhawkrentals.models.data.CategoryRepository;
+import com.benasselmeier.redhawkrentals.models.data.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +16,17 @@ import javax.validation.Valid;
 public class EquipmentController {
 
     @Autowired
-    private EquipmentDao equipmentDao;
+    private EquipmentRepository equipmentRepository;
 
     @Autowired
-    private CategoryDao categoryDao;
+    private CategoryRepository categoryRepository;
 
     //displays all equipment available for rental
 
     @RequestMapping("/all")
     public String listAllEquipment(Model model) {
 
-        model.addAttribute("equipment", equipmentDao.findAll());
+        model.addAttribute("equipment", equipmentRepository.findAll());
         model.addAttribute("title", "All Equipment");
 
         return "rentals/all";
@@ -38,7 +38,7 @@ public class EquipmentController {
     public String displayAddEquipmentForm(Model model) {
         model.addAttribute("title", "Add Equipment");
         model.addAttribute(new Equipment());
-        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "rentals/add";
     }
 
@@ -54,9 +54,9 @@ public class EquipmentController {
             return "rentals/add";
         }
 
-        Category cat = categoryDao.findOne(categoryId);
+        Category cat = categoryRepository.findOne(categoryId);
         newEquipment.setCategory(cat);
-        equipmentDao.save(newEquipment);
+        equipmentRepository.save(newEquipment);
         return "redirect:/rentals/add";
     }
 
@@ -73,7 +73,7 @@ public class EquipmentController {
     public String processSearchForm(Model model, @RequestParam String searchTerm) {
 
         model.addAttribute("title", "Search");
-        model.addAttribute("searchResults", equipmentDao.findByNameContaining(searchTerm));
+        model.addAttribute("searchResults", equipmentRepository.findByNameContaining(searchTerm));
 
         return "rentals/search";
     }
